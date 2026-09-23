@@ -490,7 +490,8 @@ const PROJECTS = [
                       { src: "references/domaine-ref3.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
                       { src: "references/domaine-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
                       { src: "references/tower-ref1.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
-                      { src: "references/tower-ref2.webp", caption: { fr: "Référence 4", en: "Reference 4" } }
+                      { src: "references/tower-ref2.webp", caption: { fr: "Référence 4", en: "Reference 4" } },
+                      { src: "references/domaine-ref8.webp", caption: { fr: "Référence 5", en: "Reference 5" } }
                     ]
                   },
                   {
@@ -509,7 +510,8 @@ const PROJECTS = [
                     references: [
                       { src: "references/garden-ref2.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
                       { src: "references/domaine-ref6.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
-                      { src: "references/garden-ref4.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
+                      { src: "references/garden-ref4.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
+                      { src: "references/domaine-ref9.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
                     ]
                   },
                   {
@@ -524,8 +526,9 @@ const PROJECTS = [
                       { ld: "15-pavilion-ld1.webp", final: "15-pavilion-final1.webp" }
                     ],
                     references: [
-                      { src: "references/domaine-ref3.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/domaine-ref5.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
+                      { src: "references/pavilion-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "references/pavilion-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
+                      { src: "references/domaine-ref5.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
                     ]
                   },
                   {
@@ -624,7 +627,7 @@ const PROJECTS = [
   {
     slug: "horror-game",
     featured: false,
-    cover: "assets/projects/horror-game/cover.svg",
+    cover: "assets/projects/horror-game/cover.jpg",
     coverVideo: "",
     year: "2025",
     engine: "Unreal Engine 5",
