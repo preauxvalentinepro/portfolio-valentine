@@ -275,6 +275,7 @@ const PROJECTS = [
                 spots: [
                   {
                     x: 88.4, y: 13.3,
+                    curve: { c1: [92.4, 27.3], c2: [85.2, 35.1] },   // flèche 1 → 2
                     title: { fr: "Sortie du tunnel - 1re récompense", en: "Tunnel exit - 1st reward" },
                     caption: {
                       fr: "Début du niveau, avec un élément narratif diffusant un dialogue, et la tour du domaine visible en arrière-plan à travers les arbres qui est le point de repère principal et la destination du niveau.",
@@ -290,6 +291,7 @@ const PROJECTS = [
                   },
                   {
                     x: 81.7, y: 40.0,
+                    curve: { c1: [75.7, 46], c2: [68.6, 27.2] },
                     title: { fr: "Statue", en: "Statue" },
                     caption: {
                       fr: "Décoration scénaristique pour maintenir l'intérêt du joueur",
@@ -301,10 +303,10 @@ const PROJECTS = [
                       { src: "references/statue-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
                       { src: "references/statue-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
                     ]
-                    curve: { c1: [92.5, 28.7], c2: [81.2, 29] },
                   },
                   {
                     x: 62.8, y: 24.3,
+                    curve: { c1: [60.3, 23.4], c2: [58.5, 25.8] },
                     title: { fr: "Vue de la cascade", en: "View of the waterfall" },
                     caption: {
                       fr: "Récompense l'exploration du joueur et diffuse un élément narratif de dialogue.",
@@ -319,6 +321,7 @@ const PROJECTS = [
                   },
                   {
                     x: 56.3, y: 27.8,
+                    curve: { c1: [54.1, 32.1], c2: [51.6, 30.1] },
                     title: { fr: "Éboulement - 2e récompense", en: "Landslide - 2nd reward" },
                     caption: {
                       fr: "Offre une deuxième vue plus proche sur la destination finale, montrant la route principale bloquée, forçant le joueur à chercher un autre passage.",
@@ -334,6 +337,7 @@ const PROJECTS = [
                   },
                   {
                     x: 51.0, y: 31.4,
+                    curve: { c1: [54.3, 35.3], c2: [58.1, 40.2] },
                     title: { fr: "Hareng rouge", en: "Red herring" },
                     caption: {
                       fr: "Hareng rouge, pour attirer le joueur sur une fausse piste en cachant le chemin.",
@@ -348,6 +352,7 @@ const PROJECTS = [
                   },
                   {
                     x: 61.1, y: 42.4,
+                    curve: { c1: [70.5, 49.7], c2: [67.5, 58.7] },
                     title: { fr: "Passage", en: "Passage" },
                     caption: {
                       fr: "Nous avons cherché à alterner entre espaces ouverts et fermés pour dynamiser l'exploration du joueur.",
@@ -364,6 +369,7 @@ const PROJECTS = [
                   },
                   {
                     x: 74.0, y: 75.4,
+                    curve: { c1: [71.6, 75.4], c2: [68.8, 72.7] },
                     title: { fr: "Zone touristique", en: "Tourist area" },
                     caption: {
                       fr: "J'ai cherché un moyen d'ajouter de la narration dans cette zone secondaire sans trop alourdir notre charge de travail. Le domaine étant isolé du village de l'île, nous ne voulions pas d'habitations ici. J'ai donc ajouté une zone touristique près de la villa abandonnée, avec des habitations troglodytes.",
@@ -379,6 +385,7 @@ const PROJECTS = [
                   },
                   {
                     x: 67.2, y: 69.8,
+                    curve: { c1: [64.8, 67.2], c2: [61.9, 68.2] },
                     title: { fr: "Landmark - 3e récompense", en: "Landmark - 3rd reward" },
                     caption: {
                       fr: "Troisième point de vue, encadré par l'environnement pour mettre en valeur la destination et permettre au joueur de se repérer dans le niveau.",
@@ -393,6 +400,7 @@ const PROJECTS = [
                   },
                   {
                     x: 59.4, y: 71.1,
+                    curve: { c1: [63.8, 61], c2: [62.7, 56.8] },
                     title: { fr: "Panorama", en: "Panoramic view" },
                     caption: {
                       fr: "Vue dégagée sur le domaine de la villa pour récompenser le joueur.",
@@ -411,6 +419,7 @@ const PROJECTS = [
                   },
                   {
                     x: 60.0, y: 52.1,
+                    curve: { c1: [57.1, 46.8], c2: [53.9, 48.1] },
                     title: { fr: "Grotte", en: "Cave" },
                     caption: {
                       fr: "Vue dégagée sur le domaine de la villa pour récompenser le joueur.",
@@ -428,6 +437,7 @@ const PROJECTS = [
                   },
                   {
                     x: 49.8, y: 49.0,
+                    curve: { c1: [50.4, 55.3], c2: [48.5, 57.9] },
                     title: { fr: "Atelier", en: "Shed" },
                     caption: {
                       fr: "Vue dégagée sur le domaine de la villa pour récompenser le joueur.",
@@ -447,6 +457,7 @@ const PROJECTS = [
                   },
                   {
                     x: 43.5, y: 52.5,
+                    curve: { c1: [37.1, 48.8], c2: [37.7, 42.4] },
                     title: { fr: "Pergola", en: "Pergola" },
                     caption: {
                       fr: "Vue dégagée sur le domaine de la villa pour récompenser le joueur.",
@@ -464,6 +475,7 @@ const PROJECTS = [
                   },
                   {
                     x: 39.1, y: 36.6,
+                    curve: { c1: [34.3, 47.9], c2: [32.6, 50.6] },
                     title: { fr: "Cour principale", en: "Main courtyard" },
                     caption: {
                       fr: "Vue dégagée sur le domaine de la villa pour récompenser le joueur.",
@@ -483,6 +495,7 @@ const PROJECTS = [
                   },
                   {
                     x: 25.9, y: 52.7,
+                    curve: { c1: [23.5, 61.2], c2: [18.1, 55.6] },
                     title: { fr: "Jardin des statues", en: "Statue garden" },
                     caption: {
                       fr: "Vue dégagée sur le domaine de la villa pour récompenser le joueur.",
@@ -501,6 +514,7 @@ const PROJECTS = [
                   },
                   {
                     x: 14.7, y: 55.5,
+                    curve: { c1: [4.4, 57.3], c2: [15.1, 44.4] },
                     title: { fr: "Pavillon", en: "Pavilion" },
                     caption: {
                       fr: "Vue dégagée sur le domaine de la villa pour récompenser le joueur.",
@@ -533,6 +547,17 @@ const PROJECTS = [
                       { src: "references/pool-ref.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
                       { src: "references/garden-ref3.webp", caption: { fr: "Référence 4", en: "Reference 4" } }
                     ]
+                  },
+                  {
+                    x: 19.1, y: 46.6,
+                    curve: { c1: [18.7, 37.9], c2: [17.4, 39.9] },
+                    title: { fr: "Porte de la tour", en: "Door of the tower" },
+                    caption: {
+                      fr: "Fin du niveau qui nous mêne à la fin du jeu, lors de la préproduction nous avions imaginé une suite à l'intérieur de la villa pour avoir plus de contexte sur l'histoire des personnages et de l'île.",
+                      en: "I searched for a way to add storytelling in this secondary area without bringing us too much more work. The property is secluded from the village of the island, we didn’t want dwellings here. So I added a touristic area near the abandonned villa with troglodytes."
+                    },
+                    ld: "16-pool-garden-ld1.webp",
+                    final: "16-pool-garden-final1.webp",
                   }
                 ]
               },
