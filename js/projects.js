@@ -530,6 +530,7 @@ const PROJECTS = [
                   },
                   {
                     x: 10.7, y: 34.4,
+                    curve: { c1: [18.7, 37.9], c2: [17.4, 39.9] },
                     title: { fr: "Piscine et jardin", en: "Pool and garden" },
                     caption: {
                       fr: "Vue dégagée sur le domaine de la villa pour récompenser le joueur.",
@@ -550,7 +551,6 @@ const PROJECTS = [
                   },
                   {
                     x: 19.1, y: 46.6,
-                    curve: { c1: [18.7, 37.9], c2: [17.4, 39.9] },
                     title: { fr: "Porte de la tour", en: "Door of the tower" },
                     caption: {
                       fr: "Fin du niveau qui nous mêne à la fin du jeu, lors de la préproduction nous avions imaginé une suite à l'intérieur de la villa pour avoir plus de contexte sur l'histoire des personnages et de l'île.",
