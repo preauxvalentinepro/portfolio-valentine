@@ -162,7 +162,7 @@ const PROJECTS = [
       url: "https://REMPLACE-MOI.itch.io/the-light-above" // ← ton vrai lien itch.io
     },
     trailer: {
-      url: "https://www.youtube.com/embed/REMPLACE_PAR_ID_VIDEO", // ← lien EMBED YouTube (pas "watch?v=")
+      url: "https://www.youtube.com/embed/59Ri-0wYjQg", // ← lien EMBED YouTube (pas "watch?v=")
       caption: { fr: "Gameplay complet", en: "Full gameplay" }
     },
     year: "2025",
@@ -627,8 +627,12 @@ const PROJECTS = [
   {
     slug: "horror-game",
     featured: false,
-    cover: "assets/projects/horror-game/cover.jpg",
+    cover: "assets/projects/horror-game/cover.webp",
     coverVideo: "",
+    trailer: {
+      url: "https://www.youtube.com/embed/6KD_pRExLoQ",
+      caption: { fr: "Level design complet", en: "Full level design" }
+    },
     year: "2025",
     engine: "Unreal Engine 5",
     role: { fr: "Level Designer", en: "Level Designer" },
@@ -650,7 +654,12 @@ const PROJECTS = [
         fr: "Conception d'un niveau de jeu d'horreur pensé pour installer une tension progressive : lignes de vue restreintes, éclairage dramatique et rythme de découverte contrôlé.",
         en: "Design of a horror game level built to create rising tension: restricted sightlines, dramatic lighting and a controlled pace of discovery."
       },
-      { type: "image", src: "01.svg", caption: { fr: "", en: "" } }
+      { type: "image", src: "01.webp", caption: { fr: "", en: "" } },
+      { type: "image", src: "02.webp", caption: { fr: "", en: "" } },
+      { type: "image", src: "03.webp", caption: { fr: "", en: "" } },
+      { type: "video", src: "04.mp4", caption: { fr: "", en: "" } },
+      { type: "image", src: "05.webp", caption: { fr: "", en: "" } },
+      { type: "image", src: "06.webp", caption: { fr: "", en: "" } }
     ]
   }
 

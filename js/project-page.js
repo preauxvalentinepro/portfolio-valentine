@@ -302,7 +302,8 @@ function extrasHTML(project) {
         <div class="footer-title">${(project.trailer.caption && tr(project.trailer.caption)) || tr(STRINGS["project.trailer"])}</div>
         <div class="project-video">
           <iframe src="${project.trailer.url}" title="${tr(project.title)}" loading="lazy" allowfullscreen
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
         </div>
       </div>
     `);

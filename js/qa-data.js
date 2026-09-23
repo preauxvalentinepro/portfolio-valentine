@@ -30,67 +30,67 @@ const QA_CATEGORIES = [
     games: [
       {
         slug: "agatha-christie-mort-sur-le-nil",
-        cover: "assets/qa/agatha-christie-mort-sur-le-nil/cover.jpg",
+        cover: "assets/qa/agatha-christie-mort-sur-le-nil/cover.webp",
         name: { fr: "Agatha Christie : Mort sur le Nil", en: "Agatha Christie: Death on the Nile" },
         genre: { fr: "Aventure & enquête narrative, aux côtés d'Hercule Poirot.", en: "Narrative detective adventure, alongside Hercule Poirot." }
       },
       {
         slug: "syberia-remastered-vr",
-        cover: "assets/qa/syberia-remastered-vr/cover.jpg",
+        cover: "assets/qa/syberia-remastered-vr/cover.webp",
         name: { fr: "Syberia – Remastered & VR", en: "Syberia – Remastered & VR" },
         genre: { fr: "Aventure point & click culte, remasterisée et déclinée en VR.", en: "Cult point & click adventure, remastered and available in VR." }
       },
       {
         slug: "garfield-kart-2",
-        cover: "assets/qa/garfield-kart-2/cover.jpg",
+        cover: "assets/qa/garfield-kart-2/cover.webp",
         name: { fr: "Garfield Kart 2 : All You Can Drift", en: "Garfield Kart 2: All You Can Drift" },
         genre: { fr: "Kart racing / party game déjanté avec Garfield et ses amis.", en: "Wacky kart racing party game with Garfield and friends." }
       },
       {
         slug: "garfield-escape-from-monday",
-        cover: "assets/qa/garfield-escape-from-monday/cover.jpg",
+        cover: "assets/qa/garfield-escape-from-monday/cover.webp",
         name: { fr: "Garfield : Escape from Monday", en: "Garfield: Escape from Monday" },
         genre: { fr: "Plateforme 3D dans les cauchemars de Garfield.", en: "3D platformer through Garfield's nightmares." }
       },
       {
         slug: "asterix-obelix-mission-babylone",
-        cover: "assets/qa/asterix-obelix-mission-babylone/cover.jpg",
+        cover: "assets/qa/asterix-obelix-mission-babylone/cover.webp",
         name: { fr: "Astérix et Obélix : Mission Babylone", en: "Asterix & Obelix: Mission Babylon" },
         genre: { fr: "Platformer d'action en coopération, direction Babylone.", en: "Co-op action-platformer, destination Babylon." }
       },
       {
         slug: "marsupilami-2-salsa-palombia",
-        cover: "assets/qa/marsupilami-2-salsa-palombia/cover.jpg",
+        cover: "assets/qa/marsupilami-2-salsa-palombia/cover.webp",
         name: { fr: "Marsupilami 2 – Salsa Palombia", en: "Marsupilami 2 – Salsa Palombia" },
         genre: { fr: "Plateforme 2D coopératif, à travers la Palombie.", en: "2D co-op platformer, across Palombia." }
       },
       {
         slug: "corsairs-bataille-caraibes",
-        cover: "assets/qa/corsairs-bataille-caraibes/cover.jpg",
+        cover: "assets/qa/corsairs-bataille-caraibes/cover.webp",
         name: { fr: "Corsairs – La Bataille des Caraïbes", en: "Corsairs – Battle of the Caribbean" },
         genre: { fr: "Stratégie temps réel & abordages, dans le monde des flibustiers.", en: "Real-time strategy & boarding battles, in the world of pirates." }
       },
       {
         slug: "les-fourmis",
-        cover: "assets/qa/les-fourmis/cover.jpg",
+        cover: "assets/qa/les-fourmis/cover.webp",
         name: { fr: "Les Fourmis", en: "Empire of the Ants" },
         genre: { fr: "Stratégie temps réel & aventure, dans un monde miniature inspiré de Bernard Werber.", en: "Real-time strategy & adventure, in a miniature world inspired by Bernard Werber." }
       },
       {
         slug: "space-adventure-cobra",
-        cover: "assets/qa/space-adventure-cobra/cover.jpg",
+        cover: "assets/qa/space-adventure-cobra/cover.webp",
         name: { fr: "Space Adventure Cobra : The Awakening", en: "Space Adventure Cobra: The Awakening" },
         genre: { fr: "Action-plateforme, adaptation de l'anime culte Cobra.", en: "Action-platformer adapted from the cult Cobra anime." }
       },
       {
         slug: "smurfs-flower-defense",
-        cover: "assets/qa/smurfs-flower-defense/cover.jpg",
+        cover: "assets/qa/smurfs-flower-defense/cover.webp",
         name: { fr: "The Smurfs – Flower Defense", en: "The Smurfs – Flower Defense" },
         genre: { fr: "Tower defense en réalité virtuelle et mixte, dans le village des Schtroumpfs.", en: "Tower defense in VR/MR, set in the Smurfs' village." }
       },
       {
         slug: "king-of-tokyo",
-        cover: "assets/qa/king-of-tokyo/cover.jpg",
+        cover: "assets/qa/king-of-tokyo/cover.webp",
         name: { fr: "King of Tokyo", en: "King of Tokyo" },
         genre: { fr: "Jeu de plateau numérique — stratégie et dés, en pleine bataille de kaijus.", en: "Digital board game — dice and strategy, kaiju-battle style." }
       }
@@ -106,19 +106,19 @@ const QA_CATEGORIES = [
     games: [
       {
         slug: "kaku-ancient-seal",
-        cover: "assets/qa/kaku-ancient-seal/cover.jpg",
+        cover: "assets/qa/kaku-ancient-seal/cover.webp",
         name: { fr: "Kaku : Ancient Seal", en: "Kaku: Ancient Seal" },
         genre: { fr: "Action-aventure en monde ouvert, exploration et combat dynamique.", en: "Open-world action-adventure, exploration and dynamic combat." }
       },
       {
         slug: "bus-bound",
-        cover: "assets/qa/bus-bound/cover.jpg",
+        cover: "assets/qa/bus-bound/cover.webp",
         name: { fr: "Bus Bound", en: "Bus Bound" },
         genre: { fr: "Simulation de conduite urbaine, au volant d'un bus.", en: "Urban driving simulation, behind the wheel of a bus." }
       },
       {
         slug: "grime-2",
-        cover: "assets/qa/grime-2/cover.jpg",
+        cover: "assets/qa/grime-2/cover.webp",
         name: { fr: "Grime II", en: "Grime II" },
         genre: { fr: "Action-aventure metroidvania, exigeant et stylisé.", en: "Stylized, challenging action-adventure metroidvania." }
       }
