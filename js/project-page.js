@@ -223,7 +223,8 @@ function blockHTML(block, dir) {
           ${block.caption && tr(block.caption) ? `<div class="block-caption">${tr(block.caption)}</div>` : ""}
           <div class="map-toolbar" data-map-toolbar hidden>
             <button type="button" class="map-calib-btn" data-map-calib>◎ Mode calibrage</button>
-            <span class="map-calib-hint">Cliquez sur la carte pour obtenir x / y (copiés dans le presse-papier)</span>
+            <button type="button" class="map-calib-btn" data-map-routes>⤳ Mode flèches</button>
+            <span class="map-calib-hint" data-map-hint></span>
           </div>
         </div>
       `;
@@ -631,6 +632,16 @@ function showMapSpot(modal, index) {
   modal.querySelector(".map-modal").scrollTop = 0;
 }
 
+/* Copie dans le presse-papier (outils de calibrage). La promesse échoue si
+   le presse-papier est indisponible : la valeur reste alors juste affichée. */
+function copyToClipboard(text) {
+  try {
+    return navigator.clipboard.writeText(text);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+}
+
 /* Trace une fine flèche courbe (Bézier cubique) entre chaque point et le
    suivant, dans l'ordre du tableau "spots". Sans "curve" sur le point de
    départ, la courbure est calculée automatiquement (légère courbe du même
@@ -726,15 +737,18 @@ function setupMapRoute(frame, spots) {
     segs.forEach(drawSeg);
   };
   new ResizeObserver(draw).observe(frame);
+  frame.querySelector("img").addEventListener("load", draw);
+  draw();
 
-  /* Poignées (mode calibrage uniquement, voir CSS .is-calibrating). */
+  /* Poignées ("Mode flèches" uniquement, voir CSS .is-editing-routes). */
   segs.forEach((seg) => {
     [seg.h1, seg.h2].forEach((handle, which) => {
       handle.addEventListener("pointerdown", (e) => {
-        if (!frame.classList.contains("is-calibrating")) return;
+        if (!frame.classList.contains("is-editing-routes")) return;
         e.preventDefault();
         e.stopPropagation();
         handle.setPointerCapture(e.pointerId);
+        if (!W || !H) draw();
         if (!seg.from.curve) {
           const [c1, c2] = controls(seg);
           seg.from.curve = { c1: toPct(c1), c2: toPct(c2) };
@@ -758,10 +772,7 @@ function setupMapRoute(frame, spots) {
           badge.style.top = hy + "%";
           badge.textContent = `Point ${seg.from.num} → ${seg.to.num} : ${text}`;
           frame.appendChild(badge);
-          try {
-            navigator.clipboard.writeText(text);
-            badge.textContent += " (copié)";
-          } catch (err) { /* presse-papier indisponible : la valeur reste affichée */ }
+          copyToClipboard(text).then(() => { badge.textContent += " (copié)"; }, () => {});
         };
         handle.addEventListener("pointermove", move);
         handle.addEventListener("pointerup", up);
@@ -795,16 +806,32 @@ function setupInteractiveMaps() {
 
     toolbar.hidden = false;
     const calibBtn = toolbar.querySelector("[data-map-calib]");
+    const routesBtn = toolbar.querySelector("[data-map-routes]");
+    const hint = toolbar.querySelector("[data-map-hint]");
     let calibrating = false;
 
     const clearMarks = () => frame.querySelectorAll(".map-calib-mark, .map-calib-badge").forEach((el) => el.remove());
 
-    calibBtn.addEventListener("click", () => {
-      calibrating = !calibrating;
+    /* Deux modes séparés, jamais actifs en même temps : "calibrage" pour
+       placer les points (x/y), "flèches" pour retoucher les courbes — dans
+       ce dernier, les points ne captent plus les clics, pour pouvoir
+       attraper une poignée même quand elle est posée sur un point. */
+    const HINTS = {
+      calib: "Cliquez sur la carte pour obtenir x / y (copiés dans le presse-papier)",
+      routes: "Faites glisser les poignées ; la ligne curve: {...} est copiée au relâchement — à coller sur le point de départ",
+      none: ""
+    };
+    const setMode = (mode) => {
+      calibrating = mode === "calib";
       frame.classList.toggle("is-calibrating", calibrating);
+      frame.classList.toggle("is-editing-routes", mode === "routes");
       calibBtn.classList.toggle("is-active", calibrating);
-      if (!calibrating) clearMarks();
-    });
+      routesBtn.classList.toggle("is-active", mode === "routes");
+      hint.textContent = HINTS[mode];
+      clearMarks();
+    };
+    calibBtn.addEventListener("click", () => setMode(calibrating ? "none" : "calib"));
+    routesBtn.addEventListener("click", () => setMode(frame.classList.contains("is-editing-routes") ? "none" : "routes"));
 
     frame.addEventListener("click", (e) => {
       if (!calibrating || e.target.closest(".map-pin, .map-route-handle")) return;
@@ -828,10 +855,7 @@ function setupInteractiveMaps() {
       badge.textContent = text;
       frame.appendChild(badge);
 
-      try {
-        navigator.clipboard.writeText(`x: ${x}, y: ${y},`);
-        badge.textContent = text + " (copié)";
-      } catch (err) { /* presse-papier indisponible : la valeur reste affichée */ }
+      copyToClipboard(`x: ${x}, y: ${y},`).then(() => { badge.textContent = text + " (copié)"; }, () => {});
     });
   });
 }

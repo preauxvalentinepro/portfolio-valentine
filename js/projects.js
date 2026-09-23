@@ -78,8 +78,8 @@
             Sa courbure est automatique ; pour la retoucher, ajoute sur le
             point de DÉPART du segment :
               curve: { c1: [x, y], c2: [x, y] }   // 2 points de contrôle, en % comme x/y
-            Le plus simple : en mode calibrage (&calibrate=1), des poignées
-            apparaissent sur chaque courbe — fais-les glisser, et la ligne
+            Le plus simple : avec &calibrate=1, clique sur "Mode flèches"
+            sous la carte — des poignées apparaissent sur chaque courbe — fais-les glisser, et la ligne
             "curve: {...}" à coller est copiée dans le presse-papier.
 
       Pour "image" / "video" / "gif" / "carousel" / "gallery" / "interactive-map",
@@ -301,6 +301,7 @@ const PROJECTS = [
                       { src: "references/statue-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
                       { src: "references/statue-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
                     ]
+                    curve: { c1: [92.5, 28.7], c2: [81.2, 29] },
                   },
                   {
                     x: 62.8, y: 24.3,

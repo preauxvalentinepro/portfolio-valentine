@@ -894,7 +894,7 @@ h1, h2, h3 {
 .map-route-head { fill: var(--accent); opacity: .85; }
 .map-route-guide,
 .map-route-handle { display: none; }
-.is-calibrating .map-route-guide {
+.is-editing-routes .map-route-guide {
   display: inline;
   fill: none;
   stroke: var(--ink);
@@ -902,7 +902,7 @@ h1, h2, h3 {
   stroke-dasharray: 3 3;
   opacity: .6;
 }
-.is-calibrating .map-route-handle {
+.is-editing-routes .map-route-handle {
   display: inline;
   fill: var(--bg);
   stroke: var(--accent);
@@ -910,7 +910,11 @@ h1, h2, h3 {
   cursor: grab;
   pointer-events: all;
 }
-.is-calibrating .map-route-handle:active { cursor: grabbing; }
+.is-editing-routes .map-route-handle:active { cursor: grabbing; }
+/* Mode flèches : le tracé passe au-dessus des points, qui s'estompent et
+   ne captent plus les clics (poignées attrapables même sur un point). */
+.is-editing-routes .map-route { z-index: 3; }
+.is-editing-routes .map-pin { pointer-events: none; opacity: .45; }
 
 .map-pin {
   position: absolute;
