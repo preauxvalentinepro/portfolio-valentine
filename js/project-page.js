@@ -89,6 +89,20 @@ function blockHTML(block, dir) {
         ${block.caption && tr(block.caption) ? `<div class="block-caption">${tr(block.caption)}</div>` : ""}
       `;
 
+    /* Vidéo YouTube dans le contenu (url = lien EMBED). */
+    case "youtube":
+      if (!block.url) return emptySlotHTML(slotLabel("video"));
+      return `
+        <figure class="block-media">
+          <div class="project-video">
+            <iframe src="${block.url}" title="${(block.caption && tr(block.caption)) || "YouTube"}" loading="lazy" allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          </div>
+        </figure>
+        ${block.caption && tr(block.caption) ? `<div class="block-caption">${tr(block.caption)}</div>` : ""}
+      `;
+
     case "images-row":
       return `
         <div class="block-row">
@@ -298,7 +312,7 @@ function extrasHTML(project) {
 
   if (project.trailer && project.trailer.url) {
     parts.push(`
-      <div class="project-extra">
+      <div class="project-extra" id="trailer-video">
         <div class="footer-title">${(project.trailer.caption && tr(project.trailer.caption)) || tr(STRINGS["project.trailer"])}</div>
         <div class="project-video">
           <iframe src="${project.trailer.url}" title="${tr(project.title)}" loading="lazy" allowfullscreen
@@ -341,11 +355,62 @@ function extrasHTML(project) {
   return parts.join("");
 }
 
-/* Bouton en haut de page qui renvoie vers la vidéo complète en bas (si
-   "fullVideo" est renseigné sur le projet — voir js/projects.js). */
+/* Où mènent les boutons "vidéos" (haut de page + bouton flottant) : la
+   section d'id "videos" si le projet en a une, sinon la vidéo YouTube
+   ("trailer"), sinon la vidéo complète ("fullVideo"). null = pas de bouton. */
+function videoTarget(project) {
+  if ((project.sections || []).some((s) => s.id === "videos")) {
+    return { href: "#videos", label: tr(STRINGS["project.videos"]) };
+  }
+  if (project.trailer && project.trailer.url) {
+    return { href: "#trailer-video", label: (project.trailer.caption && tr(project.trailer.caption)) || tr(STRINGS["project.trailer"]) };
+  }
+  if (project.fullVideo && project.fullVideo.src) {
+    return { href: "#full-video", label: tr(STRINGS["project.watchFull"]) };
+  }
+  return null;
+}
+
+/* Bouton en haut de page, à côté du bouton de téléchargement. */
 function jumpToVideoHTML(project) {
-  if (!project.fullVideo || !project.fullVideo.src) return "";
-  return `<a class="btn" href="#full-video">${tr(STRINGS["project.watchFull"])}</a>`;
+  const t = videoTarget(project);
+  return t ? `<a class="btn" href="${t.href}">▶ ${t.label}</a>` : "";
+}
+
+/* Bouton flottant, toujours accessible pendant le défilement. Il n'apparaît
+   qu'une fois le bouton du haut de page sorti de l'écran, et se cache quand
+   la zone vidéo visée est à l'écran (inutile à ce moment-là). */
+let videoFabUpdate = null;
+function setupVideoFab(project) {
+  if (videoFabUpdate) {
+    window.removeEventListener("scroll", videoFabUpdate);
+    window.removeEventListener("resize", videoFabUpdate);
+    videoFabUpdate = null;
+  }
+  let fab = document.getElementById("video-fab");
+  const t = videoTarget(project);
+  if (!t) { if (fab) fab.remove(); return; }
+
+  if (!fab) {
+    fab = document.createElement("a");
+    fab.id = "video-fab";
+    fab.className = "video-fab";
+    document.body.appendChild(fab);
+  }
+  fab.href = t.href;
+  fab.textContent = `▶ ${t.label}`;
+
+  const hero = document.getElementById("p-cta");
+  const target = document.querySelector(t.href);
+  const onScreen = (el) => {
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.bottom > 0 && r.top < window.innerHeight;
+  };
+  videoFabUpdate = () => fab.classList.toggle("is-visible", !onScreen(hero) && !onScreen(target));
+  window.addEventListener("scroll", videoFabUpdate, { passive: true });
+  window.addEventListener("resize", videoFabUpdate);
+  videoFabUpdate();
 }
 
 /* Fond du hero (haut de page) : vidéo si "coverVideo" est renseigné, sinon
@@ -913,6 +978,7 @@ function renderProject() {
 
   setupCarousels();
   setupInteractiveMaps();
+  setupVideoFab(project);
 
   const footerLinks = document.getElementById("footer-project-links");
   if (footerLinks) {

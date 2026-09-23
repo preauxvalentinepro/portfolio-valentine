@@ -1415,7 +1415,39 @@ h1, h2, h3 {
 
 /* Bloc secondaire de fin de page (trailer YouTube) : volontairement discret
    et plus petit que les médias des sections, pour ne pas rivaliser avec elles. */
-.project-extra { max-width: 480px; }
+.project-extra { max-width: 480px; scroll-margin-top: 150px; }
+
+/* Bouton flottant "Vidéos" (voir setupVideoFab() dans js/project-page.js) :
+   apparaît quand le bouton du haut de page a défilé hors de l'écran. */
+.video-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 150;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 1px solid var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 20px rgba(0,0,0,.45);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease, background .2s ease, color .2s ease;
+}
+.video-fab.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+.video-fab:hover,
+.video-fab:focus-visible { background: var(--bg); color: var(--accent); outline: none; }
+@media (max-width: 560px) {
+  .video-fab { right: 16px; bottom: 16px; padding: 10px 16px; font-size: 12px; }
+}
 
 /* La vidéo complète, elle, est un morceau de contenu à part entière : on la
    laisse prendre toute la largeur disponible comme les autres médias. */

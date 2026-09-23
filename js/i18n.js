@@ -36,6 +36,7 @@ const STRINGS = {
   "project.links":     { fr: "Voir aussi", en: "See also" },
   "project.trailer":   { fr: "Gameplay complet", en: "Full gameplay" },
   "project.watchFull": { fr: "Voir la vidéo complète", en: "Watch the full video" },
+  "project.videos":    { fr: "Vidéos", en: "Videos" },
   "project.close":     { fr: "Fermer", en: "Close" },
   "project.finalRender": { fr: "Jeu final", en: "Final render" },
   "project.references": { fr: "Références", en: "References" },

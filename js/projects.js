@@ -19,6 +19,8 @@
         - { type: "image", src: "xxx.jpg", caption: {fr:"",en:""} }
         - { type: "video", src: "xxx.mp4", poster: "xxx.jpg", caption:{fr:"",en:""} }
         - { type: "gif",   src: "xxx.gif", caption: {fr:"",en:""} }
+        - { type: "youtube", url: "https://www.youtube.com/embed/XXXXXXXXXXX", caption: {fr:"",en:""} }
+            (vidéo YouTube — lien EMBED ; url vide = emplacement pointillé)
         - { type: "images-row", items: [ "img1.jpg", "img2.jpg", "img3.jpg" ] }  (3 images côte à côte)
         - { type: "carousel", items: [ "img1.jpg", ... ], caption: {fr:"",en:""} }  (plusieurs images, avec flèches + points)
         - { type: "gallery",  items: [ "img1.jpg", ... ], caption: {fr:"",en:""} }  (grille d'images, autant que tu veux)
@@ -148,6 +150,14 @@
      }
        Affiche une vidéo YouTube intégrée, en bas de page, en petit format
        (volontairement discret, pas un élément principal de la page).
+
+   BOUTON FLOTTANT "VIDÉOS" (automatique) :
+     Un bouton reste visible en bas à droite pendant le défilement pour
+     aller aux vidéos. Il vise, dans cet ordre :
+       1. la section d'id "videos" si le projet en a une (ex: The Light Above) ;
+       2. sinon la vidéo "trailer" ;
+       3. sinon la vidéo "fullVideo".
+     Sans aucune de ces vidéos, pas de bouton.
    ============================================================================ */
 
 const PROJECTS = [
@@ -161,10 +171,7 @@ const PROJECTS = [
       label: { fr: "Tester le jeu sur itch.io", en: "Play it on itch.io" },
       url: "https://REMPLACE-MOI.itch.io/the-light-above" // ← ton vrai lien itch.io
     },
-    trailer: {
-      url: "https://www.youtube.com/embed/59Ri-0wYjQg", // ← lien EMBED YouTube (pas "watch?v=")
-      caption: { fr: "Gameplay complet", en: "Full gameplay" }
-    },
+    // Vidéos : voir la section "videos" tout en bas (gameplay + LD).
     year: "2025",
     engine: "Unreal Engine 5",
     role: { fr: "Level Designer and Lead", en: "Level Designer and Lead" },
@@ -618,6 +625,19 @@ const PROJECTS = [
             fr: "[Autres tâches : liste ici les autres casquettes portées sur le projet (narration, son, intégration, tests, etc.) en dehors du level design et du lead.]",
             en: "[Other tasks: list here any other roles you took on the project (narrative, sound, integration, testing, etc.) besides level design and lead.]"
           }
+        ]
+      },
+
+      /* -------------------------------------------------------------- */
+      // id "videos" : le bouton flottant "Vidéos" renvoie ici.
+      {
+        id: "videos",
+        nav: { fr: "Vidéos", en: "Videos" },
+        blocks: [
+          { type: "youtube", url: "https://www.youtube.com/embed/59Ri-0wYjQg", caption: { fr: "Gameplay complet", en: "Full gameplay" } },
+          { type: "youtube", url: "", caption: { fr: "Level design — Village", en: "Level design — Village" } },
+          { type: "youtube", url: "", caption: { fr: "Level design — Villa, extérieur", en: "Level design — Villa, exterior" } },
+          { type: "youtube", url: "", caption: { fr: "Level design — Villa, intérieur", en: "Level design — Villa, interior" } }
         ]
       }
 
