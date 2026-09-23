@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#141315"/>
+  <g stroke="#242426" stroke-width="1">
+    <line x1="0" y1="333" x2="1600" y2="333"/>
+    <line x1="0" y1="666" x2="1600" y2="666"/>
+  </g>
+  <text x="800" y="510" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#6b6866" letter-spacing="2">IMAGE — the-light-above/05.jpg</text>
+</svg>
