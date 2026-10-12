@@ -16,6 +16,8 @@
       il est automatiquement cherché dans le dossier du projet /assets/projects/<slug>/.
       Types disponibles :
         - { type: "text",  fr: "...", en: "..." }
+        - { type: "heading", fr: "...", en: "..." }  (petit sous-titre dans la section)
+        - { type: "list", items: [ {fr:"...",en:"..."}, ... ] }  (liste à puces)
         - { type: "image", src: "xxx.jpg", caption: {fr:"",en:""} }
         - { type: "video", src: "xxx.mp4", poster: "xxx.jpg", caption:{fr:"",en:""} }
         - { type: "gif",   src: "xxx.gif", caption: {fr:"",en:""} }
@@ -261,14 +263,50 @@ const PROJECTS = [
             },
             blocks: [
               {
+                type: "heading",
+                fr: "Objectif du niveau",
+                en: "Level objective"
+              },
+              {
+                type: "text",
+                fr: "L'objectif de ce niveau est de mettre le joueur sous pression à mesure qu'il progresse, en construisant une ambiance de plus en plus pesante :",
+                en: "This level's goal is to put increasing pressure on the player as they progress, building an atmosphere that grows heavier over time:"
+              },
+              {
+                type: "list",
+                items: [
+                  {
+                    fr: "Une ambiance pesante, renforcée par une tempête et un orage qui s'intensifient au fil de la progression.",
+                    en: "A heavy, oppressive atmosphere, reinforced by a storm and thunder that intensify as the player advances."
+                  },
+                  {
+                    fr: "Une musique composée de plusieurs pistes qui se superposent progressivement, pour accentuer cette pression.",
+                    en: "Layered music, with new tracks added progressively to heighten the pressure."
+                  },
+                  {
+                    fr: "Faire comprendre au joueur qu'il approche de la fin du jeu.",
+                    en: "Making the player feel they are approaching the end of the game."
+                  },
+                  {
+                    fr: "Un niveau construit pour être visuellement impressionnant, en guise de récompense pour le joueur.",
+                    en: "A level built to be visually impressive, as a reward for the player."
+                  }
+                ]
+              },
+              {
                 type: "text",
                 fr: "Ce niveau se déroule dans un coin reculé d'une île italienne. L'objectif du joueur est d'atteindre une villa abandonnée depuis des années. Autrefois, la propriété abritait un musée retraçant l'histoire de l'île et la vie de la femme qui l'a fait construire — une célèbre cantatrice, disparue tragiquement à un jeune âge. À mesure que le joueur progresse, une tempête s'intensifie à l'approche de l'entrée, renforçant la tension et l'atmosphère du lieu.",
                 en: "This level takes place in a secluded corner of an Italian island. The player's objective is to reach an abandoned villa that has stood empty for years. The estate once served as a museum retracing the island's history and the life of the woman who built it — a renowned opera singer who died tragically at a young age. As the player progresses, an intensifying storm builds tension the closer they get to the entrance, reinforcing the atmosphere."
               },
               {
+                type: "heading",
+                fr: "Rythme",
+                en: "Pacing"
+              },
+              {
                 type: "text",
-                fr: "Rythme : Dans un walking sim, le joueur peut vite se lasser lorsqu'il ne se passe rien, j'ai donc dû trouver des solutions pour que l'exploration reste plaisante et interactive. J'ai abordé ce problème en réfléchissant à la façon dont l'environnement pouvait capter l'attention du joueur, éveiller sa curiosité et entretenir son intérêt, à travers plusieurs événements déclenchés :",
-                en: "Pacing: In a walking sim, the player can easily lose interest when nothing happens, so I had to find ways to keep exploration engaging and interactive. I approached this by thinking about how the environment itself could capture the player's attention, spark curiosity, and sustain engagement through a set of triggered events, including:"
+                fr: "Dans un walking sim, le joueur peut vite se lasser lorsqu'il ne se passe rien, j'ai donc dû trouver des solutions pour que l'exploration reste plaisante et interactive. J'ai abordé ce problème en réfléchissant à la façon dont l'environnement pouvait capter l'attention du joueur, éveiller sa curiosité et entretenir son intérêt, à travers plusieurs événements déclenchés :",
+                en: "In a walking sim, the player can easily lose interest when nothing happens, so I had to find ways to keep exploration engaging and interactive. I approached this by thinking about how the environment itself could capture the player's attention, spark curiosity, and sustain engagement through a set of triggered events, including:"
               },
               {
                 type: "interactive-map",
@@ -572,9 +610,14 @@ const PROJECTS = [
                 ]
               },
               {
+                type: "heading",
+                fr: "Landmark",
+                en: "Landmark"
+              },
+              {
                 type: "text",
-                fr: "Landmark : Sur l'ensemble du niveau, j'ai voulu teaser la destination finale en jouant sur une alternance de frustration et de récompense tout au long du parcours, grâce à la tour qui sert de landmark pour indiquer la destination au joueur, en utilisant le principe de déni et de récompense tout le long du chemin. J'ai également exploité la verticalité de l'environnement rendre la marche plus dynamique et pour renforcer la composition, encadrer la tour avec les environnements et lumières pour influencer et diriger le joueur.",
-                en: "Pacing: In a walking sim, the player can easily lose interest when nothing happens, so I had to find ways to keep exploration engaging and interactive. I approached this by thinking about how the environment itself could capture the player's attention, spark curiosity, and sustain engagement through a set of triggered events, including:"
+                fr: "Sur l'ensemble du niveau, j'ai voulu teaser la destination finale en jouant sur une alternance de frustration et de récompense tout au long du parcours, grâce à la tour qui sert de landmark pour indiquer la destination au joueur. J'ai également exploité la verticalité de l'environnement pour rendre la marche plus dynamique et renforcer la composition, en encadrant la tour avec l'environnement et la lumière pour influencer et guider le joueur.",
+                en: "Throughout the level, I wanted to tease the final destination by alternating frustration and reward along the way, using the tower as a landmark that points the player toward their destination. I also used the environment's verticality to make the walk more dynamic and strengthen the composition, framing the tower with the environment and lighting to guide and direct the player."
               },
               { type: "carousel", items: [], caption: { fr: "Images de level design", en: "Level design images" } },
               { type: "video", src: "", caption: { fr: "Vidéo de level design", en: "Level design video" } },

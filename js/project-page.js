@@ -62,6 +62,12 @@ function blockHTML(block, dir) {
     case "heading":
       return `<h3 class="block-heading">${tr({ fr: block.fr, en: block.en })}</h3>`;
 
+    case "list": {
+      const items = block.items || [];
+      if (!items.length) return "";
+      return `<ul class="block-list">${items.map((it) => `<li>${tr(it)}</li>`).join("")}</ul>`;
+    }
+
     case "image":
       if (!block.src) return emptySlotHTML(slotLabel("image"));
       return `
@@ -926,6 +932,88 @@ function setupInteractiveMaps() {
   });
 }
 
+/* Outil d'édition réservé à l'autrice du site : actif seulement avec
+   "&calibrate=1" dans l'URL (jamais visible des visiteurs), il permet de
+   sélectionner un passage de texte dans un paragraphe ou une liste et de
+   le mettre en gras en un clic. Le HTML du paragraphe (avec le <strong>
+   ajouté) est copié dans le presse-papier, prêt à coller tel quel dans le
+   fr/en correspondant de js/projects.js. */
+function setupTextBoldHelper() {
+  const calibrateOn = new URLSearchParams(window.location.search).get("calibrate") === "1";
+  if (!calibrateOn) return;
+
+  if (document.getElementById("bold-helper-btn")) return; // déjà en place (re-render après changement de langue)
+
+  const EDITABLE_SELECTOR = ".block-text, .block-list li";
+
+  const hint = document.createElement("div");
+  hint.className = "bold-helper-hint";
+  hint.textContent = "✎ Mode édition — sélectionnez du texte pour le mettre en gras";
+  document.body.appendChild(hint);
+
+  const btn = document.createElement("button");
+  btn.id = "bold-helper-btn";
+  btn.type = "button";
+  btn.className = "bold-helper-btn";
+  btn.textContent = "Gras";
+  btn.hidden = true;
+  document.body.appendChild(btn);
+
+  let activeRange = null;
+  let activeHost = null;
+  let resetTimeout = null;
+
+  const hideBtn = () => { btn.hidden = true; activeRange = null; activeHost = null; };
+
+  document.addEventListener("selectionchange", () => {
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed || sel.rangeCount === 0) { hideBtn(); return; }
+
+    const range = sel.getRangeAt(0);
+    const node = range.commonAncestorContainer;
+    const el = node.nodeType === 1 ? node : node.parentElement;
+    const host = el ? el.closest(EDITABLE_SELECTOR) : null;
+    if (!host || !host.closest("#p-body")) { hideBtn(); return; }
+
+    const rect = range.getBoundingClientRect();
+    if (!rect.width && !rect.height) { hideBtn(); return; }
+
+    clearTimeout(resetTimeout);
+    btn.textContent = "Gras";
+    btn.style.left = (rect.left + rect.width / 2) + "px";
+    btn.style.top = rect.top + "px";
+    btn.hidden = false;
+    activeRange = range.cloneRange();
+    activeHost = host;
+  });
+
+  /* Sans ce preventDefault, le mousedown sur le bouton efface la sélection
+     en cours avant que le clic ne puisse la lire. */
+  btn.addEventListener("mousedown", (e) => e.preventDefault());
+
+  btn.addEventListener("click", () => {
+    if (!activeRange || !activeHost) return;
+    const host = activeHost;
+
+    try {
+      const strong = document.createElement("strong");
+      activeRange.surroundContents(strong);
+    } catch (err) {
+      btn.textContent = "⚠ Sélection invalide";
+      resetTimeout = setTimeout(hideBtn, 1400);
+      return;
+    }
+
+    const html = host.innerHTML.trim();
+    window.getSelection().removeAllRanges();
+    copyToClipboard(html).then(
+      () => { btn.textContent = "Copié ✓"; },
+      () => { btn.textContent = "Gras ajouté (copie impossible)"; }
+    );
+    resetTimeout = setTimeout(hideBtn, 1400);
+  });
+}
+
 function renderProject() {
   mapRegistry = {};
   mapCounter = 0;
@@ -979,6 +1067,7 @@ function renderProject() {
   setupCarousels();
   setupInteractiveMaps();
   setupVideoFab(project);
+  setupTextBoldHelper();
 
   const footerLinks = document.getElementById("footer-project-links");
   if (footerLinks) {
