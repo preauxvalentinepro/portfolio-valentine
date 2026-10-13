@@ -45,6 +45,11 @@ let mapViewIndex = 0;
 let mapSpotsCache = [];
 let mapSpotIndex = 0;
 
+/* Case "Légende" du comparateur : affiche la version annotée du LD
+   ("ldExplained") ou la capture vierge. Le choix est gardé d'un point à
+   l'autre tant que la page est ouverte. */
+let mapLegendOn = true;
+
 function emptySlotHTML(text) {
   return `<div class="block-slot"><span>${text}</span></div>`;
 }
@@ -204,7 +209,7 @@ function blockHTML(block, dir) {
            parcourus avec des flèches. Sans "views", on retombe sur le
            couple ld/final unique posé directement sur le spot (comme
            avant) — un point sans "views" n'affiche donc aucune flèche. */
-        const rawViews = (s.views && s.views.length) ? s.views : [{ ld: s.ld, final: s.final }];
+        const rawViews = (s.views && s.views.length) ? s.views : [{ ld: s.ld, ldExplained: s.ldExplained, final: s.final }];
         return {
           num: i + 1,
           x: s.x,
@@ -214,6 +219,7 @@ function blockHTML(block, dir) {
           caption: tr(s.caption) || "",
           views: rawViews.map((v) => ({
             ld: v.ld ? `${dir}${v.ld}` : "",
+            ldExplained: v.ldExplained ? `${dir}${v.ldExplained}` : "",
             final: v.final ? `${dir}${v.final}` : ""
           })),
           references: (s.references || []).map((r) => {
@@ -515,6 +521,12 @@ function ensureMapModal() {
         <button type="button" class="map-view-nav map-view-next" id="map-view-next" aria-label="${tr(STRINGS["project.nextView"])}" hidden>›</button>
         <span class="map-view-counter" id="map-view-counter" hidden></span>
       </div>
+      <div class="map-compare-bar" id="map-legend-toggle" hidden>
+        <label class="map-legend-toggle">
+          <input type="checkbox" id="map-legend-check" checked>
+          <span>${tr(STRINGS["project.legend"])}</span>
+        </label>
+      </div>
       <div class="map-refs" id="map-refs" hidden>
         <div class="map-refs-label">${tr(STRINGS["project.references"])}</div>
         <div class="map-refs-row" id="map-refs-row"></div>
@@ -600,6 +612,11 @@ function ensureMapModal() {
     handle.style.left = e.target.value + "%";
   });
 
+  modal.querySelector("#map-legend-check").addEventListener("change", (e) => {
+    mapLegendOn = e.target.checked;
+    applyMapLegend(modal);
+  });
+
   modal.querySelector("#map-view-prev").addEventListener("click", () => showMapView(modal, mapViewIndex - 1));
   modal.querySelector("#map-view-next").addEventListener("click", () => showMapView(modal, mapViewIndex + 1));
 
@@ -638,18 +655,22 @@ function showMapView(modal, index) {
   } else {
     afterImg.hidden = true; afterSlot.hidden = false; afterSlot.textContent = tr(SLOT_LABELS.final);
   }
-  if (view.ld) {
-    beforeImg.src = view.ld; beforeImg.hidden = false; beforeSlot.hidden = true;
+  if (view.ld || view.ldExplained) {
+    beforeImg.hidden = false; beforeSlot.hidden = true;
   } else {
     beforeImg.hidden = true; beforeSlot.hidden = false; beforeSlot.textContent = tr(SLOT_LABELS.ld);
   }
+  applyMapLegend(modal);
 
+  /* Chaque plan s'ouvre avec le LD sur 75 % de l'image (légende quasi
+     entière) et un aperçu du rendu final sur la droite. */
+  const start = 75;
   const slider = modal.querySelector("#map-slider");
   const beforeWrap = modal.querySelector("#map-before-wrap");
   const handle = modal.querySelector(".map-compare-handle");
-  slider.value = 50;
-  beforeWrap.style.width = "50%";
-  handle.style.left = "50%";
+  slider.value = start;
+  beforeWrap.style.width = start + "%";
+  handle.style.left = start + "%";
 
   const multi = n > 1;
   const prevBtn = modal.querySelector("#map-view-prev");
@@ -661,6 +682,23 @@ function showMapView(modal, index) {
   if (multi) counter.textContent = (mapViewIndex + 1) + " / " + n;
 
   requestAnimationFrame(() => syncMapCompareWidth(modal));
+}
+
+/* Côté LD du plan affiché : version annotée si la case "Légende" est
+   cochée et qu'elle existe, sinon la capture vierge. La case n'apparaît
+   que pour les plans qui ont un "ldExplained". */
+function applyMapLegend(modal) {
+  const view = mapViewsCache[mapViewIndex];
+  if (!view) return;
+  const hasLegend = !!view.ldExplained;
+  const src = (hasLegend && (mapLegendOn || !view.ld)) ? view.ldExplained : view.ld;
+  const beforeImg = modal.querySelector("#map-before");
+  if (src && beforeImg.getAttribute("src") !== src) beforeImg.src = src;
+  /* Précharge l'autre version pour que la bascule soit instantanée. */
+  if (hasLegend && view.ld) [view.ld, view.ldExplained].forEach((s) => { new Image().src = s; });
+
+  modal.querySelector("#map-legend-toggle").hidden = !hasLegend || !view.ld;
+  modal.querySelector("#map-legend-check").checked = mapLegendOn;
 }
 
 function openMapModal(spots, index) {

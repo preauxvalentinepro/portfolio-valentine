@@ -37,6 +37,9 @@
                   title:   { fr: "...", en: "..." },
                   caption: { fr: "...", en: "..." },
                   ld:    "point-ld.jpg",           // capture blockout / grey-box
+                  ldExplained: "point-ld-legende.jpg", // optionnel — même capture LD annotée : ouvre
+                                                   // le plan en plein LD + case "Légende" pour la masquer
+                                                   // (marche aussi dans chaque entrée de "views")
                   final: "point-final.jpg",        // capture du rendu final
                   views: [                          // optionnel — plusieurs plans sur ce point,
                     { ld: "point-a-ld.jpg", final: "point-a-final.jpg" },  // parcourus avec des flèches
@@ -310,7 +313,7 @@ const PROJECTS = [
               },
               {
                 type: "interactive-map",
-                src: "villa-map.webp",
+                src: "villa/villa-map.webp",
                 caption: {
                   fr: "Carte du niveau — cliquez sur un point pour comparer le blockout et le rendu final à cet endroit.",
                   en: "Level map — click a point to compare the blockout and the final render at that spot."
@@ -326,12 +329,13 @@ const PROJECTS = [
                       fr: "Début du niveau, avec un élément narratif diffusant un dialogue, et la tour du domaine visible en arrière-plan à travers les arbres qui est le point de repère principal et la destination du niveau.",
                       en: "Beginning of the level, with a narrative beat delivered through dialogue, and the estate's tower visible in the background through the trees, which is the main landmark and the destination of the level."
                     },
-                    ld: "01-tunnel-exit-ld.webp",
-                    final: "01-tunnel-exit-final.webp",
+                    ld: "villa/01-tunnel-exit-ld.webp",
+                    ldExplained: "villa/ld-explained/01-tunnel-exit-ld.webp",
+                    final: "villa/01-tunnel-exit-final.webp",
                     references: [
-                      { src: "references/tower-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/road-ref1.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
-                      { src: "references/path-ref5.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
+                      { src: "villa/references/tower-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/road-ref1.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
+                      { src: "villa/references/path-ref5.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
                     ]
                   },
                   {
@@ -342,11 +346,12 @@ const PROJECTS = [
                       fr: "Décoration scénaristique pour maintenir l'intérêt du joueur",
                       en: "Narrative set dressing used to hold the player's interest."
                     },
-                    ld: "02-statue-ld.webp",
-                    final: "02-statue-final.webp",
+                    ld: "villa/02-statue-ld.webp",
+                    ldExplained: "villa/ld-explained/02-statue-ld.webp",
+                    final: "villa/02-statue-final.webp",
                     references: [
-                      { src: "references/statue-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/statue-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
+                      { src: "villa/references/statue-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/statue-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
                     ]
                   },
                   {
@@ -357,11 +362,13 @@ const PROJECTS = [
                       fr: "Récompense l'exploration du joueur et diffuse un élément narratif de dialogue.",
                       en: "Rewards the player's exploration and delivers a narrative dialogue beat."
                     },
-                    ld: "03-waterfall-ld.webp",
-                    final: "03-waterfall-final.webp",
+                    views: [
+                      { ld: "villa/03-waterfall1-ld.webp", ldExplained: "villa/ld-explained/03-waterfall1-ld.webp", final: "villa/03-waterfall1-final.webp" },
+                      { ld: "villa/03-waterfall2-ld.webp", final: "villa/03-waterfall2-final.webp" }
+                    ],
                     references: [
-                      { src: "references/waterfall-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/cliffs-ref1.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
+                      { src: "villa/references/waterfall-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/cliffs-ref1.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
                     ]
                   },
                   {
@@ -372,12 +379,13 @@ const PROJECTS = [
                       fr: "Offre une deuxième vue plus proche sur la destination finale, montrant la route principale bloquée, forçant le joueur à chercher un autre passage.",
                       en: "Offers a second, closer view of the final destination, showing the main road blocked and forcing the player to look for another way through."
                     },
-                    ld: "04-rockfall-ld.webp",
-                    final: "04-rockfall-final.webp",
+                    ld: "villa/04-rockfall-ld.webp",
+                    ldExplained: "villa/ld-explained/04-rockfall-ld.webp",
+                    final: "villa/04-rockfall-final.webp",
                     references: [
-                      { src: "references/tower-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/tower-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
-                      { src: "references/domaine-ref7.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
+                      { src: "villa/references/tower-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/tower-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
+                      { src: "villa/references/domaine-ref7.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
                     ]
                   },
                   {
@@ -388,11 +396,12 @@ const PROJECTS = [
                       fr: "Hareng rouge, pour attirer le joueur sur une fausse piste en cachant le chemin.",
                       en: "Red herring, to lure the player onto a false trail to conceal the real path."
                     },
-                    ld: "05-red-herring-ld.webp",
-                    final: "05-red-herring-final.webp",
+                    ld: "villa/05-red-herring-ld.webp",
+                    ldExplained: "villa/ld-explained/05-red-herring-ld.webp",
+                    final: "villa/05-red-herring-final.webp",
                     references: [
-                      { src: "references/road-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/path-ref1.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
+                      { src: "villa/references/road-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/path-ref1.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
                     ]
                   },
                   {
@@ -404,12 +413,12 @@ const PROJECTS = [
                       en: "We aimed to alternate between open and enclosed spaces to make the player's exploration more dynamic."
                     },
                     views: [
-                      { ld: "06-passage-ld1.webp", final: "06-passage-final1.webp" },
-                      { ld: "06-passage-ld2.webp", final: "06-passage-final2.webp" }
+                      { ld: "villa/06-passage-ld1.webp", ldExplained: "villa/ld-explained/06-passage-ld1.webp", final: "villa/06-passage-final1.webp" },
+                      { ld: "villa/06-passage-ld2.webp", final: "villa/06-passage-final2.webp" }
                     ],
                     references: [
-                      { src: "references/path-ref2.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/path-ref1.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
+                      { src: "villa/references/path-ref2.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/path-ref1.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
                     ]
                   },
                   {
@@ -421,11 +430,11 @@ const PROJECTS = [
                       en: "I searched for a way to add storytelling in this secondary area without bringing us too much more work. The property is secluded from the village of the island, we didn’t want dwellings here. So I added a touristic area near the abandoned villa with troglodytes."
                     },
                     views: [
-                      { ld: "07-tourist-area-ld1.webp", final: "07-tourist-area-final1.webp" },
-                      { ld: "07-tourist-area-ld2.webp", final: "07-tourist-area-final2.webp" }
+                      { ld: "villa/07-tourist-area-ld1.webp", ldExplained: "villa/ld-explained/07-tourist-area-ld1.webp", final: "villa/07-tourist-area-final1.webp" },
+                      { ld: "villa/07-tourist-area-ld2.webp", final: "villa/07-tourist-area-final2.webp" }
                     ],
                     references: [
-                      { src: "references/tourist-area-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } }
+                      { src: "villa/references/tourist-area-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } }
                     ]
                   },
                   {
@@ -436,11 +445,12 @@ const PROJECTS = [
                       fr: "Troisième point de vue, encadré par l'environnement pour mettre en valeur la destination et permettre au joueur de se repérer dans le niveau.",
                       en: "A third viewpoint, framed by the environment to highlight the destination and help the player find their bearings in the level."
                     },
-                    ld: "08-landmark-ld.webp",
-                    final: "08-landmark-final.webp",
+                    ld: "villa/08-landmark-ld.webp",
+                    ldExplained: "villa/ld-explained/08-landmark-ld.webp",
+                    final: "villa/08-landmark-final.webp",
                     references: [
-                      { src: "references/path-ref4.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/domaine-ref4.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
+                      { src: "villa/references/path-ref4.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/domaine-ref4.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
                     ]
                   },
                   {
@@ -452,14 +462,14 @@ const PROJECTS = [
                       en: "An open view over the villa's estate to reward the player."
                     },
                     views: [
-                      { ld: "09-panoramic-view-ld1.webp", final: "09-panoramic-view-final1.webp" },
-                      { ld: "09-panoramic-view-ld2.webp", final: "09-panoramic-view-final2.webp" }
+                      { ld: "villa/09-panoramic-view-ld1.webp", ldExplained: "villa/ld-explained/09-panoramic-view-ld1.webp", final: "villa/09-panoramic-view-final1.webp" },
+                      { ld: "villa/09-panoramic-view-ld2.webp", final: "villa/09-panoramic-view-final2.webp" }
                     ],
                     references: [
-                      { src: "references/domaine-ref3.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/domaine-ref5.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
-                      { src: "references/view-ref1.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
-                      { src: "references/cliffs-ref2.webp", caption: { fr: "Référence 4", en: "Reference 4" } }
+                      { src: "villa/references/domaine-ref3.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/domaine-ref5.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
+                      { src: "villa/references/view-ref1.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
+                      { src: "villa/references/cliffs-ref2.webp", caption: { fr: "Référence 4", en: "Reference 4" } }
                     ]
                   },
                   {
@@ -471,13 +481,13 @@ const PROJECTS = [
                       en: "I searched for a way to add storytelling in this secondary area without bringing us too much more work. The property is secluded from the village of the island, we didn’t want dwellings here. So I added a touristic area near the abandonned villa with troglodytes."
                     },
                     views: [
-                      { ld: "10-cave-ld1.webp", final: "10-cave-final1.webp" },
-                      { ld: "10-cave-ld2.webp", final: "10-cave-final2.webp" },
-                      { ld: "10-cave-ld3.webp", final: "10-cave-final3.webp" }
+                      { ld: "villa/10-cave-ld1.webp", final: "villa/10-cave-final1.webp" },
+                      { ld: "villa/10-cave-ld2.webp", final: "villa/10-cave-final2.webp" },
+                      { ld: "villa/10-cave-ld3.webp", final: "villa/10-cave-final3.webp" }
                     ],
                     references: [
-                      { src: "references/path-ref3.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/path-ref4.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
+                      { src: "villa/references/path-ref3.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/path-ref4.webp", caption: { fr: "Référence 2", en: "Reference 2" } }
                     ]
                   },
                   {
@@ -489,15 +499,15 @@ const PROJECTS = [
                       en: "I searched for a way to add storytelling in this secondary area without bringing us too much more work. The property is secluded from the village of the island, we didn’t want dwellings here. So I added a touristic area near the abandonned villa with troglodytes."
                     },
                     views: [
-                      { ld: "11-shed-ld1.webp", final: "11-shed-final1.webp" },
-                      { ld: "11-shed-ld2.webp", final: "11-shed-final2.webp" },
-                      { ld: "11-shed-ld3.webp", final: "11-shed-final3.webp" }
+                      { ld: "villa/11-shed-ld1.webp", final: "villa/11-shed-final1.webp" },
+                      { ld: "villa/11-shed-ld2.webp", final: "villa/11-shed-final2.webp" },
+                      { ld: "villa/11-shed-ld3.webp", final: "villa/11-shed-final3.webp" }
                     ],
                     references: [
-                      { src: "references/domaine-ref3.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/domaine-ref5.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
-                      { src: "references/view-ref1.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
-                      { src: "references/cliffs-ref2.webp", caption: { fr: "Référence 4", en: "Reference 4" } }
+                      { src: "villa/references/domaine-ref3.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/domaine-ref5.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
+                      { src: "villa/references/view-ref1.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
+                      { src: "villa/references/cliffs-ref2.webp", caption: { fr: "Référence 4", en: "Reference 4" } }
                     ]
                   },
                   {
@@ -509,13 +519,13 @@ const PROJECTS = [
                       en: "I searched for a way to add storytelling in this secondary area without bringing us too much more work. The property is secluded from the village of the island, we didn’t want dwellings here. So I added a touristic area near the abandonned villa with troglodytes."
                     },
                     views: [
-                      { ld: "12-pergola-ld1.webp", final: "12-pergola-final1.webp" },
-                      { ld: "12-pergola-ld2.webp", final: "12-pergola-final2.webp" }
+                      { ld: "villa/12-pergola-ld1.webp", final: "villa/12-pergola-final1.webp" },
+                      { ld: "villa/12-pergola-ld2.webp", final: "villa/12-pergola-final2.webp" }
                     ],
                     references: [
-                      { src: "references/vegetation-tunnel-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/vegetation-tunnel-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
-                      { src: "references/vegetation-tunnel-ref3.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
+                      { src: "villa/references/vegetation-tunnel-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/vegetation-tunnel-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
+                      { src: "villa/references/vegetation-tunnel-ref3.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
                     ]
                   },
                   {
@@ -527,16 +537,16 @@ const PROJECTS = [
                       en: "I searched for a way to add storytelling in this secondary area without bringing us too much more work. The property is secluded from the village of the island, we didn’t want dwellings here. So I added a touristic area near the abandonned villa with troglodytes."
                     },
                     views: [
-                      { ld: "13-main-courtyard-ld1.webp", final: "13-main-courtyard-final1.webp" },
-                      { ld: "13-main-courtyard-ld2.webp", final: "13-main-courtyard-final2.webp" },
-                      { ld: "13-main-courtyard-ld3.webp", final: "13-main-courtyard-final3.webp" }
+                      { ld: "villa/13-main-courtyard-ld1.webp", final: "villa/13-main-courtyard-final1.webp" },
+                      { ld: "villa/13-main-courtyard-ld2.webp", final: "villa/13-main-courtyard-final2.webp" },
+                      { ld: "villa/13-main-courtyard-ld3.webp", final: "villa/13-main-courtyard-final3.webp" }
                     ],
                     references: [
-                      { src: "references/domaine-ref3.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/domaine-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
-                      { src: "references/tower-ref1.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
-                      { src: "references/tower-ref2.webp", caption: { fr: "Référence 4", en: "Reference 4" } },
-                      { src: "references/domaine-ref8.webp", caption: { fr: "Référence 5", en: "Reference 5" } }
+                      { src: "villa/references/domaine-ref3.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/domaine-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
+                      { src: "villa/references/tower-ref1.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
+                      { src: "villa/references/tower-ref2.webp", caption: { fr: "Référence 4", en: "Reference 4" } },
+                      { src: "villa/references/domaine-ref8.webp", caption: { fr: "Référence 5", en: "Reference 5" } }
                     ]
                   },
                   {
@@ -548,15 +558,15 @@ const PROJECTS = [
                       en: "I searched for a way to add storytelling in this secondary area without bringing us too much more work. The property is secluded from the village of the island, we didn’t want dwellings here. So I added a touristic area near the abandonned villa with troglodytes."
                     },
                     views: [
-                      { ld: "14-statue-garden-ld1.webp", final: "14-statue-garden-final1.webp" },
-                      { ld: "14-statue-garden-ld2.webp", final: "14-statue-garden-final2.webp" },
-                      { ld: "14-statue-garden-ld3.webp", final: "14-statue-garden-final3.webp" }
+                      { ld: "villa/14-statue-garden-ld1.webp", final: "villa/14-statue-garden-final1.webp" },
+                      { ld: "villa/14-statue-garden-ld2.webp", final: "villa/14-statue-garden-final2.webp" },
+                      { ld: "villa/14-statue-garden-ld3.webp", final: "villa/14-statue-garden-final3.webp" }
                     ],
                     references: [
-                      { src: "references/garden-ref2.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/domaine-ref6.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
-                      { src: "references/garden-ref4.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
-                      { src: "references/domaine-ref9.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
+                      { src: "villa/references/garden-ref2.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/domaine-ref6.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
+                      { src: "villa/references/garden-ref4.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
+                      { src: "villa/references/domaine-ref9.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
                     ]
                   },
                   {
@@ -568,12 +578,12 @@ const PROJECTS = [
                       en: "I searched for a way to add storytelling in this secondary area without bringing us too much more work. The property is secluded from the village of the island, we didn’t want dwellings here. So I added a touristic area near the abandonned villa with troglodytes."
                     },
                     views: [
-                      { ld: "15-pavilion-ld1.webp", final: "15-pavilion-final1.webp" }
+                      { ld: "villa/15-pavilion-ld1.webp", final: "villa/15-pavilion-final1.webp" }
                     ],
                     references: [
-                      { src: "references/pavilion-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/pavilion-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
-                      { src: "references/domaine-ref5.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
+                      { src: "villa/references/pavilion-ref1.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/pavilion-ref2.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
+                      { src: "villa/references/domaine-ref5.webp", caption: { fr: "Référence 3", en: "Reference 3" } }
                     ]
                   },
                   {
@@ -585,27 +595,27 @@ const PROJECTS = [
                       en: "I searched for a way to add storytelling in this secondary area without bringing us too much more work. The property is secluded from the village of the island, we didn’t want dwellings here. So I added a touristic area near the abandonned villa with troglodytes."
                     },
                     views: [
-                      { ld: "16-pool-garden-ld1.webp", final: "16-pool-garden-final1.webp" },
-                      { ld: "16-pool-garden-ld2.webp", final: "16-pool-garden-final2.webp" },
-                      { ld: "16-pool-garden-ld3.webp", final: "16-pool-garden-final3.webp" },
-                      { ld: "16-pool-garden-ld4.webp", final: "16-pool-garden-final4.webp" }
+                      { ld: "villa/16-pool-garden-ld1.webp", final: "villa/16-pool-garden-final1.webp" },
+                      { ld: "villa/16-pool-garden-ld2.webp", final: "villa/16-pool-garden-final2.webp" },
+                      { ld: "villa/16-pool-garden-ld3.webp", final: "villa/16-pool-garden-final3.webp" },
+                      { ld: "villa/16-pool-garden-ld4.webp", final: "villa/16-pool-garden-final4.webp" }
                     ],
                     references: [
-                      { src: "references/domaine-ref2.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
-                      { src: "references/domaine-ref5.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
-                      { src: "references/pool-ref.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
-                      { src: "references/garden-ref3.webp", caption: { fr: "Référence 4", en: "Reference 4" } }
+                      { src: "villa/references/domaine-ref2.webp", caption: { fr: "Référence 1", en: "Reference 1" } },
+                      { src: "villa/references/domaine-ref5.webp", caption: { fr: "Référence 2", en: "Reference 2" } },
+                      { src: "villa/references/pool-ref.webp", caption: { fr: "Référence 3", en: "Reference 3" } },
+                      { src: "villa/references/garden-ref3.webp", caption: { fr: "Référence 4", en: "Reference 4" } }
                     ]
                   },
                   {
                     x: 19.1, y: 46.6,
                     title: { fr: "Porte de la tour", en: "Door of the tower" },
                     caption: {
-                      fr: "Fin du niveau qui nous mêne à la fin du jeu, lors de la préproduction nous avions imaginé une suite à l'intérieur de la villa pour avoir plus de contexte sur l'histoire des personnages et de l'île.",
-                      en: "I searched for a way to add storytelling in this secondary area without bringing us too much more work. The property is secluded from the village of the island, we didn’t want dwellings here. So I added a touristic area near the abandonned villa with troglodytes."
+                      fr: "Fin du niveau qui nous mène à la fin du jeu, lors de la préproduction nous avions imaginé une suite à l'intérieur de la villa pour avoir plus de contexte sur l'histoire des personnages et de l'île.",
+                      en: "End of the level, which leads to the end of the game. During preproduction, we had imagined a continuation inside the villa to give more context on the story of the characters and the island."
                     },
-                    ld: "16-pool-garden-ld1.webp",
-                    final: "16-pool-garden-final1.webp",
+                    ld: "villa/17-finaldoor-ld.webp",
+                    final: "villa/17-finaldoor-final.webp",
                   }
                 ]
               },

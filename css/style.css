@@ -1066,7 +1066,7 @@ h1, h2, h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 20px 100px;   /* marges latérales = place des flèches de points */
   z-index: 200;
 }
 .map-modal-backdrop[hidden] { display: none; }
@@ -1102,10 +1102,10 @@ h1, h2, h3 {
   background: var(--bg-soft);
   border: 1px solid var(--line);
   border-radius: 4px;
-  max-width: 760px;
+  max-width: 1400px;
   width: 100%;
-  padding: 22px;
-  max-height: 90vh;
+  padding: 26px 30px;
+  max-height: 94vh;
   overflow-y: auto;
 }
 
@@ -1119,7 +1119,7 @@ h1, h2, h3 {
 .map-modal-title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 22px;
+  font-size: 26px;
   margin: 0;
   color: var(--ink);
 }
@@ -1140,16 +1140,20 @@ h1, h2, h3 {
 
 .map-modal-caption {
   color: var(--ink-dim);
-  font-size: 14px;
+  font-size: 16.5px;
   line-height: 1.6;
-  margin: 2px 0 16px;
-  max-width: 60ch;
+  margin: 6px 0 18px;
+  max-width: 90ch;
 }
 
 .map-compare {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 48 / 25;   /* = ratio des captures (1920×1000, 3840×2000) : rien n'est rogné, légendes comprises */
+  /* Plafonné pour que l'image tienne en hauteur dans l'écran avec le
+     titre et la description au-dessus. */
+  max-width: calc((94vh - 230px) * 48 / 25);
+  margin: 0 auto;
   border-radius: 4px;
   overflow: hidden;
   background: var(--bg);
@@ -1291,6 +1295,44 @@ h1, h2, h3 {
   pointer-events: none;
 }
 
+/* Case "Légende" : bascule LD annoté ↔ LD vierge (voir applyMapLegend()
+   dans js/project-page.js). Dans une barre sous l'image, pour ne rien
+   masquer de la capture ; même largeur que le comparateur. */
+.map-compare-bar {
+  display: flex;
+  align-items: center;
+  max-width: calc((94vh - 230px) * 48 / 25);
+  margin: 10px auto 0;
+}
+.map-compare-bar[hidden] { display: none; }
+.map-legend-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 6px 12px 6px 10px;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color .2s ease, color .2s ease;
+}
+.map-legend-toggle:hover,
+.map-legend-toggle:focus-within { border-color: var(--accent); color: var(--accent); }
+.map-legend-toggle input {
+  margin: 0;
+  width: 13px;
+  height: 13px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
 /* Références de la zone : rangée de petites vignettes, bien séparée du
    slider de comparaison LD/final (n'apparaît que si des refs existent). */
 .map-refs {
@@ -1405,7 +1447,7 @@ h1, h2, h3 {
 /* Écrans où les flèches de points n'ont plus la place à côté de la
    pop-up : elles descendent en bas de l'écran. */
 @media (max-width: 900px) {
-  .map-modal-backdrop { padding-bottom: 84px; }
+  .map-modal-backdrop { padding: 20px 20px 84px; }
   .map-spot-nav { top: auto; bottom: 18px; transform: none; width: 46px; height: 46px; font-size: 24px; }
   .map-spot-prev { left: calc(50% - 56px); }
   .map-spot-next { right: calc(50% - 56px); }
